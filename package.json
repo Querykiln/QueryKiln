@@ -1,0 +1,81 @@
+{
+  "name": "querykiln",
+  "version": "1.0.4",
+  "description": "QueryKiln Desktop Application",
+  "author": {
+    "name": "Gethin Jones",
+    "email": "gerkinonfire@googlemail.com"
+  },
+  "license": "MIT",
+  "main": "main.cjs",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:renderer\" \"npm:dev:electron\"",
+    "dev:renderer": "vite",
+    "dev:electron": "cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
+    "build": "vite build",
+    "desktop-build-mac": "npm run build && electron-builder --mac",
+    "desktop-build-win-all": "npm run build && electron-builder --win --x64 --arm64",
+    "desktop-build-linux-all": "npm run build && electron-builder --linux --x64 --arm64",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "electron-store": "^8.2.0",
+    "electron-updater": "^6.3.8",
+    "jspdf": "^3.0.3",
+    "openai": "^6.9.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.6.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^6.22.3",
+    "recharts": "^3.4.1"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.4.1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^29.4.6",
+    "electron-builder": "^25.1.8",
+    "postcss": "^8.4.35",
+    "tailwindcss": "3.4.3",
+    "vite": "^5.4.0"
+  },
+  "build": {
+    "appId": "com.querykiln.desktop",
+    "productName": "QueryKiln",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "**/*"
+    ],
+    "mac": {
+      "target": ["dmg", "zip"],
+      "category": "public.app-category.productivity",
+      "icon": "build/icons/icon.icns"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "icon": "build/icons/icon.ico"
+    },
+    "linux": {
+      "target": ["AppImage", "deb", "rpm"],
+      "category": "Utility",
+      "icon": "build/icons",
+      "maintainer": "Gethin Jones <gerkinonfire@googlemail.com>"
+    },
+    "publish": {
+      "provider": "github"
+    }
+  }
+}

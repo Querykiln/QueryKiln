@@ -1,0 +1,251 @@
+/* ----------------------------------------------------------
+   QueryKiln — Global Styles (Light + Dark Theme)
+   FULL FILE — Replace everything in index.css
+----------------------------------------------------------- */
+
+/* Font + Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+/* -----------------------------------------
+   THEME VARIABLES 
+----------------------------------------- */
+:root {
+  --bg: #f7f8fa;
+  --bg-panel: #ffffff;
+  --bg-sidebar: #f3f4f7;
+  --border: #dcdfe2;
+  --text: #1a1a1a;
+  --text-muted: #555;
+  --accent: #6a5df7;
+  --accent-hover: #584be1;
+  --shadow: rgba(0, 0, 0, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1116;
+    --bg-panel: #13151b;
+    --bg-sidebar: #14171f;
+    --border: #2a2d36;
+    --text: #ffffff;
+    --text-muted: #a4acc4;
+    --accent: #7b6cff;
+    --accent-hover: #6658eb;
+    --shadow: rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* -----------------------------------------
+   Layout Wrapper 
+----------------------------------------- */
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* -----------------------------------------
+   Sidebar 
+----------------------------------------- */
+.sidebar {
+  width: 260px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 18px;
+  color: var(--text);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s;
+  color: var(--text-muted);
+}
+
+.nav-item.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.nav-item:hover {
+  background: var(--accent-hover);
+  color: #fff;
+}
+
+/* -----------------------------------------
+   Main Content Area
+----------------------------------------- */
+.main {
+  flex: 1;
+  padding: 32px 40px;
+  overflow-y: auto;
+  background: var(--bg);
+}
+
+/* -----------------------------------------
+   Page Header 
+----------------------------------------- */
+.page-header {
+  margin-bottom: 28px;
+}
+
+.page-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.page-description {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+/* -----------------------------------------
+   Inputs
+----------------------------------------- */
+input, textarea {
+  width: 100%;
+  background: var(--bg-panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+  margin-bottom: 14px;
+  outline: none;
+  transition: border 0.15s, background 0.2s;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--accent);
+}
+
+textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+/* -----------------------------------------
+   Buttons
+----------------------------------------- */
+button {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 20px;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.12s;
+}
+
+button:hover {
+  background: var(--accent-hover);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-panel);
+}
+
+/* -----------------------------------------
+   Cards / Panels
+----------------------------------------- */
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  box-shadow: 0 3px 10px var(--shadow);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-bottom: 22px;
+}
+
+/* -----------------------------------------
+   Results / Output Areas
+----------------------------------------- */
+.output-box {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  padding: 16px 18px;
+  border-radius: 8px;
+  margin-top: 12px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+/* -----------------------------------------
+   Toast Styles (react-hot-toast auto)
+----------------------------------------- */
+.toaster {
+  z-index: 99999;
+}
+
+/* -----------------------------------------
+   Copy icon hover animation
+----------------------------------------- */
+.copy-icon {
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.15s;
+}
+
+.copy-icon:hover {
+  opacity: 1;
+}
+
+/* -----------------------------------------
+   Scrollbar beautify
+----------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
