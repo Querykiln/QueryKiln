@@ -23,12 +23,11 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install dependencies (clean)
-        run: |
-          rm -rf node_modules
-          npm install
+      # Clean, cross-platform dependency install
+      - name: Install dependencies cleanly
+        run: npm ci
 
-      # ========= MACOS BUILD =========
+      # ======== MAC BUILD ========
       - name: Build macOS Installer
         if: matrix.os == 'macos-latest'
         env:
@@ -37,7 +36,7 @@ jobs:
           npm run build
           npm run desktop-build-mac
 
-      # ========= WINDOWS BUILD =========
+      # ======== WINDOWS BUILD ========
       - name: Build Windows Installer
         if: matrix.os == 'windows-latest'
         env:
@@ -46,7 +45,7 @@ jobs:
           npm run build
           npm run desktop-build-win-all
 
-      # ========= LINUX BUILD =========
+      # ======== LINUX BUILD ========
       - name: Build Linux Installer
         if: matrix.os == 'ubuntu-latest'
         env:
@@ -55,7 +54,7 @@ jobs:
           npm run build
           npm run desktop-build-linux-all
 
-      # ========= UPLOAD RELEASE ASSETS =========
+      # ======== RELEASE ASSETS ========
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
