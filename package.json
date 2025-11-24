@@ -74,8 +74,8 @@
       "icon": "build/icons",
       "maintainer": "Gethin Jones <gerkinonfire@googlemail.com>"
     },
-    "publish": {
-      "provider": "github"
-    }
+
+    /** IMPORTANT CHANGE BELOW **/
+    "publish": []
   }
 }
