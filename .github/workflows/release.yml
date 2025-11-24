@@ -1,5 +1,8 @@
 name: Build and Release
 
+permissions:
+  contents: write
+
 on:
   push:
     tags:
@@ -23,38 +26,34 @@ jobs:
         with:
           node-version: "20"
 
-      # Clean, cross-platform dependency install
       - name: Install dependencies cleanly
         run: npm ci
 
-      # ======== MAC BUILD ========
+      # ======== MAC ========
       - name: Build macOS Installer
         if: matrix.os == 'macos-latest'
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm run build
           npm run desktop-build-mac
 
-      # ======== WINDOWS BUILD ========
+      # ======== WINDOWS ========
       - name: Build Windows Installer
         if: matrix.os == 'windows-latest'
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm run build
           npm run desktop-build-win-all
 
-      # ======== LINUX BUILD ========
+      # ======== LINUX ========
       - name: Build Linux Installer
         if: matrix.os == 'ubuntu-latest'
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm run build
           npm run desktop-build-linux-all
 
-      # ======== RELEASE ASSETS ========
+      # ======== RELEASE ========
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
